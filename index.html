@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lua Bella</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            min-height: 100vh;
+        }
+
+        body {
+            background: linear-gradient(to right, #01213d, #012d53);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: #01213d;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: animateStar 18s linear infinite;
+        }
+
+        @keyframes animateStar {
+            from {
+                transform: translateY(0) rotate(0deg);
+            }
+            to {
+                transform: translateY(-2000px) rotate(720deg);
+            }
+        }
+
+        .container {
+            text-align: center;
+            z-index: 1;
+        }
+
+        img.logo {
+            max-width: 300px;
+            max-height: 200px;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .buttons {
+            font-weight: bold;
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            padding: 10px 20px;
+            background: linear-gradient(to bottom, #d9ccc128, #facfce21);
+            color: #fff;
+            text-decoration: none;
+            border-radius: 30px;
+            margin: 10px auto;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background: linear-gradient(to bottom, #563d8b, #74549b);
+        }
+    </style>
+</head>
+<body>
+    <div class="stars" id="stars"></div>
+    <div class="container">
+        <img src="LUA_ART-removebg-preview.png" alt="Foto da loja" class="logo" id="logo">
+        <div class="buttons">
+            <a href="https://www.instagram.com/luabella_art/" class="button">Instagram</a>
+            <a href="https://www.tiktok.com/@luabellaart?_t=8lOIRmztp5h&_r=1" class="button">TikTok</a>
+            <a href="https://pin.it/5NuFrFiNd" class="button">Pinterest</a>
+            <a href="https://api.whatsapp.com/send?phone=556484569001&text=Ol%C3%A1,%20eu%20gostaria%20de%20saber%20dos%20valores%20dos%20chaveiros." class="button">Faça seu pedido</a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const starsContainer = document.getElementById("stars");
+            const logo = document.getElementById("logo");
+
+            function createStar() {
+                const star = document.createElement("div");
+                star.classList.add("star");
+                star.style.width = Math.random() * 2 + "px";
+                star.style.height = star.style.width;
+                star.style.background = "#fff";
+                star.style.top = Math.random() * 100 + "%";
+                star.style.left = Math.random() * 100 + "%";
+                starsContainer.appendChild(star);
+            }
+
+            function createStars() {
+                for (let i = 0; i < 50; i++) { // aumentei o número de estrelas
+                    createStar();
+                }
+            }
+
+            function addStarsPeriodically() {
+                setInterval(createStar, 50);
+            }
+
+            createStars();
+            addStarsPeriodically();
+
+            logo.addEventListener("click", function(event) {
+                event.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>
